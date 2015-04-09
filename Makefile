@@ -1,0 +1,3 @@
+
+lib:
+	ino build
