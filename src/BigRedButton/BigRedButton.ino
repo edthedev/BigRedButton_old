@@ -11,7 +11,7 @@ void setup() {
   // pullup resistor so it goes high unless
   // connected to ground:
   //digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
-  
+  pinMode(13, OUTPUT);
   pinMode(12, HIGH);    
   pinMode(11, INPUT);
   
@@ -31,12 +31,13 @@ void loop() {
   //}
   button = digitalRead(11);
   key = digitalRead(9);
+  digitalWrite(13, button);
   Serial.print("Button: ");
   Serial.print(button);
   Serial.print(" Key: ");
   Serial.print(key);
   Serial.println("");
-  delay(5000);
+  delay(100);
   // new document:
   //Keyboard.press(EnterKey);
   //delay(100);
