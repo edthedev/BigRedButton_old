@@ -5,6 +5,7 @@
 char EnterKey = 176;
 int button = 0;
 int key = 0;
+int signal = 0;
 
 void setup() {
   // make pin 2 an input and turn on the 
@@ -31,7 +32,8 @@ void loop() {
   //}
   button = digitalRead(11);
   key = digitalRead(9);
-  digitalWrite(13, button);
+  signal =  !key && !button;
+  digitalWrite(13, signal);
   Serial.print("Button: ");
   Serial.print(button);
   Serial.print(" Key: ");
