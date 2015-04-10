@@ -13,7 +13,7 @@ void setup() {
   // connected to ground:
   //digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
   pinMode(13, OUTPUT);
-  pinMode(12, HIGH);    
+  pinMode(2, OUTPUT);    
   pinMode(11, INPUT);
   
   pinMode(10, HIGH);    
@@ -33,6 +33,7 @@ void loop() {
   button = digitalRead(11);
   key = digitalRead(9);
   signal =  !key && !button;
+  digitalWrite(2, !key);
   digitalWrite(13, signal);
   Serial.print("Button: ");
   Serial.print(button);
