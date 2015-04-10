@@ -13,7 +13,7 @@ void setup() {
   // connected to ground:
   //digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
   pinMode(13, OUTPUT);
-  pinMode(2, OUTPUT);    
+  pinMode(2, OUTPUT );    
   pinMode(11, INPUT);
   
   pinMode(10, HIGH);    
@@ -40,6 +40,10 @@ void loop() {
   Serial.print(" Key: ");
   Serial.print(key);
   Serial.println("");
+  if(signal)
+  {
+    Serial.print("RedButton!");
+  }
   delay(100);
   // new document:
   //Keyboard.press(EnterKey);
