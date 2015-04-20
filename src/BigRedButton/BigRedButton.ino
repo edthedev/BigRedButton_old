@@ -3,10 +3,6 @@
 //  char ctrlKey = KEY_LEFT_CTRL;  
 //  You must select Keyboard from the Arduino "Tools > USB Type" menu
 //
-// To make this work on a Mac, I had to run:
-//  cd /System/Library/CoreServices
-//  sudo mv KeyboardSetupAssistant.app/ KeyboardSetupAssistant-OFF.app
-//
 char EnterKey = 176;
 int button = 0;
 int key = 0;
