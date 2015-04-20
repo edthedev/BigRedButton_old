@@ -7,21 +7,28 @@ int button = 0;
 int key = 0;
 int signal = 0;
 
+int hotPin = 14;
+int keyPin = 9;
+int buttonPin = 10;
+int ledPin = 12; // the on board Teensy LED is on pin 12.
+
 void setup() {
-  // make pin 2 an input and turn on the 
-  // pullup resistor so it goes high unless
+
+  // Connect the pull-up resistors to this pin.
+  pinMode(hotPin, HIGH);
+
+  // make keyPin and buttonPin inputs and turn on the 
+  // pullup resistor so they go high unless
   // connected to ground:
-  //digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
-  pinMode(13, OUTPUT);
-  pinMode(2, OUTPUT );    
-  pinMode(11, INPUT);
-  
-  pinMode(10, HIGH);    
-  pinMode(9, INPUT);
+  pinMode(buttonPin, INPUT);
+  pinMode(keyPin, INPUT);
+
+  // status light for the key state:
+  pinMode(ledPin, OUTPUT);
   
   // initialize control over the keyboard:
-  Keyboard.begin();
-  // Serial.begin(9600);
+  // Keyboard.begin();
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -30,11 +37,11 @@ void loop() {
     // do nothing until pin 2 goes low
   //  delay(500);
   //}
-  button = digitalRead(11);
-  key = digitalRead(9);
+  button = digitalRead(buttonPin);
+  key = digitalRead(keyPin);
   signal =  !key && !button;
-  digitalWrite(2, !key);
-  digitalWrite(13, signal);
+  digitalWrite(ledPin, !key);
+  // digitalWrite(ledPin, signal);
   
   // Serial.print("Button: ");
   // Serial.print(button);
@@ -43,8 +50,8 @@ void loop() {
   // Serial.println("");
   if(signal)
   {
-    // Serial.print("RedButton!");
-    Keyboard.press(EnterKey);
+    Serial.print("RedButton!");
+    // Keyboard.press(EnterKey);
   }
   delay(100);
   // new document:
