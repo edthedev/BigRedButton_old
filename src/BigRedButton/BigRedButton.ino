@@ -1,7 +1,12 @@
 // use this option for OSX:
 // use this option for Windows and Linux:
 //  char ctrlKey = KEY_LEFT_CTRL;  
-// #include <Keyboard.h>
+//  You must select Keyboard from the Arduino "Tools > USB Type" menu
+//
+// To make this work on a Mac, I had to run:
+//  cd /System/Library/CoreServices
+//  sudo mv KeyboardSetupAssistant.app/ KeyboardSetupAssistant-OFF.app
+//
 char EnterKey = 176;
 int button = 0;
 int key = 0;
@@ -27,8 +32,8 @@ void setup() {
   // pinMode(ledPin, OUTPUT);
   
   // initialize control over the keyboard:
-  // Keyboard.begin();
-  Serial.begin(9600);
+  Keyboard.begin();
+  // Serial.begin(9600);
 }
 
 void loop() {
@@ -41,6 +46,7 @@ void loop() {
   button = digitalRead(buttonPin);
   key = digitalRead(keyPin);
   signal =  !key && !button;
+  prime =  key && !button;
   digitalWrite(ledPin, !key);
   // digitalWrite(ledPin, signal);
   
@@ -49,15 +55,24 @@ void loop() {
   Serial.print(" Key: ");
   Serial.print(key);
   Serial.println("");
+  if(prime)
+  {
+    Serial.print("Primed!");
+    Keyboard.print("z");
+    Keyboard.print("/");
+    delay(900);
+  }
+
   if(signal)
   {
     Serial.print("RedButton!");
-    // Keyboard.press(EnterKey);
+    Keyboard.press(EnterKey);
+    delay(900);
   }
   delay(100);
   // new document:
   //delay(100);
-  //Keyboard.releaseAll();
+  Keyboard.releaseAll();
   // wait for new window to open:
   //delay(1000);
 }
