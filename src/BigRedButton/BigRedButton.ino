@@ -20,8 +20,8 @@ void setup() {
   pinMode(9, INPUT);
   
   // initialize control over the keyboard:
-  //Keyboard.begin();
-  Serial.begin(9600);
+  Keyboard.begin();
+  // Serial.begin(9600);
 }
 
 void loop() {
@@ -35,18 +35,19 @@ void loop() {
   signal =  !key && !button;
   digitalWrite(2, !key);
   digitalWrite(13, signal);
-  Serial.print("Button: ");
-  Serial.print(button);
-  Serial.print(" Key: ");
-  Serial.print(key);
-  Serial.println("");
+  
+  // Serial.print("Button: ");
+  // Serial.print(button);
+  // Serial.print(" Key: ");
+  // Serial.print(key);
+  // Serial.println("");
   if(signal)
   {
-    Serial.print("RedButton!");
+    // Serial.print("RedButton!");
+    Keyboard.press(EnterKey);
   }
   delay(100);
   // new document:
-  //Keyboard.press(EnterKey);
   //delay(100);
   //Keyboard.releaseAll();
   // wait for new window to open:
