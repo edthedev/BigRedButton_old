@@ -3,10 +3,11 @@
 //  char ctrlKey = KEY_LEFT_CTRL;  
 //  You must select Keyboard from the Arduino "Tools > USB Type" menu
 //
-char EnterKey = 176;
+char EnterKey = KEY_ENTER;
 int button = 0;
 int key = 0;
 int signal = 0;
+int prime = 0;
 
 int hotPin = 14;
 int keyPin = 9;
@@ -62,13 +63,14 @@ void loop() {
   if(signal)
   {
     Serial.print("RedButton!");
-    Keyboard.press(EnterKey);
+    Keyboard.print("\n");
+	// Keyboard.press(EnterKey);
     delay(900);
   }
   delay(100);
   // new document:
   //delay(100);
-  Keyboard.releaseAll();
+  // Keyboard.releaseAll();
   // wait for new window to open:
   //delay(1000);
 }
